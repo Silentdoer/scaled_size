@@ -1,6 +1,7 @@
 import 'dart:math';
-import 'package:flutter/material.dart';
+
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/material.dart';
 import 'package:universal_io/io.dart' show Platform;
 
 class ScaledSizeUtil {
@@ -8,10 +9,10 @@ class ScaledSizeUtil {
   static const Size defaultSize = Size(360, 640);
 
   /// [Size] of the device
-  static late Size ui;
+  static late Size _ui;
 
   /// Boolean to indicate text scaling
-  static late bool allowTextScaling = true;
+  static late bool _allowTextScaling = true;
 
   /// Screen width of the device
   static late double _screenWidth;
@@ -28,8 +29,10 @@ class ScaledSizeUtil {
   /// [ScaledSizeUtil.deviceType]
   static late DeviceType _deviceType;
 
+  ScaledSizeUtil._();
+
   /// Initializing [ScaledSizeUtil]
-  void init(
+  static void init(
     BoxConstraints constraints,
     Orientation orientation, {
     double base = 16.0,
@@ -37,7 +40,7 @@ class ScaledSizeUtil {
     bool allowTextScaling = true,
   }) {
     _orientation = orientation;
-    ui = size;
+    _ui = size;
     allowTextScaling = allowTextScaling;
 
     /// Sets the device _screenWidth and _screenHeight
@@ -69,55 +72,56 @@ class ScaledSizeUtil {
   }
 
   /// Gives the screen width of the device
-  double get screenWidth => _screenWidth;
+  static double get screenWidth => _screenWidth;
 
   /// Gives the screen height of the device
-  double get screenHeight => _screenHeight;
+  static double get screenHeight => _screenHeight;
 
   /// Gives the scale width for the device
-  double get scaleW => _screenWidth / ui.width;
+  static double get scaleW => _screenWidth / _ui.width;
 
   /// Gives the scale height for the device
-  double get scaleH => _screenHeight / ui.height;
+  static double get scaleH => _screenHeight / _ui.height;
 
   /// Gives the scale factor for the device
-  double get scale => max(scaleW, scaleH);
+  static double get scale => max(scaleW, scaleH);
 
   /// Returns text scaling factor which will be later used for font size in [ScaledSizeUtil.scaledFontSize]
-  double get textScaleFactor => WidgetsBinding.instance!.window.textScaleFactor;
+  static double get textScaleFactor =>
+      WidgetsBinding.instance!.window.textScaleFactor;
 
   /// Gives the responsive height
-  double height(num input) => input * scaleH;
+  static double height(num input) => input * scaleH;
 
   /// Gives the responsive width
-  double width(num input) => input * scaleW;
+  static double width(num input) => input * scaleW;
 
   /// caculates the view height for the given input
-  double viewHeight(num input) => input * (_screenHeight / 100);
+  static double viewHeight(num input) => input * (_screenHeight / 100);
 
   /// calculates the view width for the given input
-  double viewWidth(num input) => input * (_screenWidth / 100);
+  static double viewWidth(num input) => input * (_screenWidth / 100);
 
   /// Returns font size in rem based on the input and base size
-  double rem(num input) => input * _base * textScaleFactor;
+  static double rem(num input) => input * _base * textScaleFactor;
 
   /// Gives the font size in scalarPixels based on the input
-  /// If [allowTextScaling] is set true it will returns a scalable font size
-  /// If [allowTextScaling] is set false it will returns a non scalable font size
-  double scaledFontSize(num input) =>
-      allowTextScaling ? input * scale * textScaleFactor : input * scale;
+  /// If [_allowTextScaling] is set true it will returns a scalable font size
+  /// If [_allowTextScaling] is set false it will returns a non scalable font size
+  static double scaledFontSize(num input) =>
+      _allowTextScaling ? input * scale * textScaleFactor : input * scale;
 
   /// Return the radius for rounded corners
-  double radius(num input) => input * scale;
+  static double radius(num input) => input * scale;
 
   /// Gives the current orientation of the device
-  Orientation get orientation => _orientation;
+  static Orientation get orientation => _orientation;
 
   /// Gives the current device type [ScaledSizeUtil.deviceType]
-  DeviceType get deviceType => _deviceType;
+  static DeviceType get deviceType => _deviceType;
 
   /// Return maximum value between [ScaledSizeUtil.viewWidth] and [ScaledSizeUtil.viewHeight]
-  double maxViewPort(num input) {
+  static double maxViewPort(num input) {
     double vH = viewHeight(input);
     double vW = viewWidth(input);
     return max(vH, vW);

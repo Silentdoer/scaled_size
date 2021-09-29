@@ -28,7 +28,7 @@ class ScaledSize extends StatelessWidget {
       builder: (_, constraints) => OrientationBuilder(
         builder: (_, orientation) {
           if (constraints.maxWidth != 0) {
-            ScaledSizeUtil().init(
+            ScaledSizeUtil.init(
               constraints,
               orientation,
               base: baseForREM,

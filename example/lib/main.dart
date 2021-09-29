@@ -10,10 +10,10 @@ class MyApp extends StatelessWidget {
     return ScaledSize(
       allowTextScaling: true,
       builder: () {
-        // print(ScaledSizeUtil().deviceType);
-        // print(ScaledSizeUtil().orientation);
-        // print(ScaledSizeUtil().screenHeight);
-        // print(ScaledSizeUtil().screenWidth);
+        // print(ScaledSizeUtil.deviceType);
+        // print(ScaledSizeUtil.orientation);
+        // print(ScaledSizeUtil.screenHeight);
+        // print(ScaledSizeUtil.screenWidth);
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           home: SafeArea(

@@ -79,10 +79,10 @@ return ScaledSize(
 
 ## Other Params
 
-- `ScaledSizeUtil().orientation` - Gives the orientation of the device.
-- `ScaledSizeUtil().deviceType` - Gives the type as Mobile or Tablet.
-- `ScaledSizeUtil().screenHeight` - Gives the height of the device.
-- `ScaledSizeUtil().screenWidth` - Gives the width of the device.
+- `ScaledSizeUtil.orientation` - Gives the orientation of the device.
+- `ScaledSizeUtil.deviceType` - Gives the type as Mobile or Tablet.
+- `ScaledSizeUtil.screenHeight` - Gives the height of the device.
+- `ScaledSizeUtil.screenWidth` - Gives the width of the device.
 
 > Supported deviceTypes = Mobile, Tablet, Web, Windows, Mac, Linux, Fuchsia
 
