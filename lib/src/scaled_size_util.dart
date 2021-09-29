@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:universal_io/io.dart' show Platform;
 
-class ResizeUtil {
+class ScaledSizeUtil {
   /// Default size for device
-  static const Size defaultSize = Size(360, 690);
+  static const Size defaultSize = Size(360, 640);
 
   /// [Size] of the device
   static late Size ui;
 
   /// Boolean to indicate text scaling
-  static late bool allowtextScaling = true;
+  static late bool allowTextScaling = true;
 
   /// Screen width of the device
   static late double _screenWidth;
@@ -19,26 +19,26 @@ class ResizeUtil {
   /// Screen height of the device
   static late double _screenHeight;
 
-  /// Base size used to calculate rem [ResizeUtil.rem]
+  /// Base size used to calculate rem [ScaledSizeUtil.rem]
   static late double _base;
 
   /// Current Orientation of the device
   static late Orientation _orientation;
 
-  /// [ResizeUtil.deviceType]
+  /// [ScaledSizeUtil.deviceType]
   static late DeviceType _deviceType;
 
-  /// Initializing [ResizeUtil]
+  /// Initializing [ScaledSizeUtil]
   void init(
     BoxConstraints constraints,
     Orientation orientation, {
     double base = 16.0,
     Size size = defaultSize,
-    bool allowtextScaling = true,
+    bool allowTextScaling = true,
   }) {
     _orientation = orientation;
     ui = size;
-    allowtextScaling = allowtextScaling;
+    allowTextScaling = allowTextScaling;
 
     /// Sets the device _screenWidth and _screenHeight
     _screenWidth = constraints.maxWidth;
@@ -83,7 +83,7 @@ class ResizeUtil {
   /// Gives the scale factor for the device
   double get scale => max(scaleW, scaleH);
 
-  /// Returns text scaling factor which will be later used for font size in [ResizeUtil.scalarPixel]
+  /// Returns text scaling factor which will be later used for font size in [ScaledSizeUtil.scaledFontSize]
   double get textScaleFactor => WidgetsBinding.instance!.window.textScaleFactor;
 
   /// Gives the responsive height
@@ -102,10 +102,10 @@ class ResizeUtil {
   double rem(num input) => input * _base * textScaleFactor;
 
   /// Gives the font size in scalarPixels based on the input
-  /// If [allowtextScaling] is set true it will returns a scalable font size
-  /// If [allowtextScaling] is set false it will returns a non scalable font size
-  double scalarPixel(num input) =>
-      allowtextScaling ? input * scale * textScaleFactor : input * scale;
+  /// If [allowTextScaling] is set true it will returns a scalable font size
+  /// If [allowTextScaling] is set false it will returns a non scalable font size
+  double scaledFontSize(num input) =>
+      allowTextScaling ? input * scale * textScaleFactor : input * scale;
 
   /// Return the radius for rounded corners
   double radius(num input) => input * scale;
@@ -113,10 +113,10 @@ class ResizeUtil {
   /// Gives the current orientation of the device
   Orientation get orientation => _orientation;
 
-  /// Gives the current device type [ResizeUtil.deviceType]
+  /// Gives the current device type [ScaledSizeUtil.deviceType]
   DeviceType get deviceType => _deviceType;
 
-  /// Return maximum value between [ResizeUtil.viewWidth] and [ResizeUtil.viewHeight]
+  /// Return maximum value between [ScaledSizeUtil.viewWidth] and [ScaledSizeUtil.viewHeight]
   double maxViewPort(num input) {
     double vH = viewHeight(input);
     double vW = viewWidth(input);

@@ -1,3 +1,3 @@
-# example app using resize
+# example app using scaled_size
 
-An example app using resize package
+An example app using scale_size package

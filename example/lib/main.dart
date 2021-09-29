@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:resize/resize.dart';
+import 'package:scaled_size/scaled_size.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Initialize ResizeUtil using Resize()
-    return Resize(
-      allowtextScaling: true,
+    // Initialize ScaledSizeUtil using ScaledSize()
+    return ScaledSize(
+      allowTextScaling: true,
       builder: () {
-        // print(ResizeUtil().deviceType);
-        // print(ResizeUtil().orientation);
-        // print(ResizeUtil().screenHeight);
-        // print(ResizeUtil().screenWidth);
+        // print(ScaledSizeUtil().deviceType);
+        // print(ScaledSizeUtil().orientation);
+        // print(ScaledSizeUtil().screenHeight);
+        // print(ScaledSizeUtil().screenWidth);
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           home: SafeArea(
@@ -21,17 +21,17 @@ class MyApp extends StatelessWidget {
               body: ListView(
                 children: [
                   SizedBox(
-                    height: 20.h, // Using Responsive height
+                    height: 20.rh, // Using Responsive height
                   ),
                   Text(
-                    "This is a Example app for resize package",
+                    "This is a Example app for scaled_size package",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 1.15.rem, // Using rem for font size
                     ),
                   ),
                   SizedBox(
-                    height: 20.h, // Using Responsive height
+                    height: 20.rh, // Using Responsive height
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -43,17 +43,17 @@ class MyApp extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: 30.h, // Using Responsive height
+                    height: 30.rh, // Using Responsive height
                   ),
                   Text(
                     "This is a text having fontSize in sp and scaling is set to true by default",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 15.sp,
+                      fontSize: 15.rfs,
                     ),
                   ),
                   SizedBox(
-                    height: 30.h, // Using Responsive height
+                    height: 30.rh, // Using Responsive height
                   ),
                   Row(
                     children: [
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
                         color: Colors.red,
                       ),
                       SizedBox(
-                        width: 20.vw, // Using Responsive height
+                        width: 20.vw, // Using Viewport width
                       ),
                       Container(
                         width: 40.vw,
@@ -73,7 +73,7 @@ class MyApp extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: 30.h,
+                    height: 30.rh,
                   ),
                   Center(
                     child: TextButton(
@@ -81,14 +81,14 @@ class MyApp extends StatelessWidget {
                       style: TextButton.styleFrom(
                         backgroundColor: Color(0xFFFF5555),
                         primary: Colors.white,
-                        elevation: 5.h,
+                        elevation: 5.rh,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.r),
+                          borderRadius: BorderRadius.circular(8.br),
                         ),
                       ),
                       child: Text(
                         "This is a button",
-                        style: TextStyle(fontSize: 13.sp),
+                        style: TextStyle(fontSize: 13.rfs),
                       ),
                     ),
                   ),

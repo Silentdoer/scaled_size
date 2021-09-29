@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:resize/src/resizeUtil.dart';
+import 'package:scaled_size/src/scaled_size_util.dart';
 
-/// Helper Widget to initialize [ResizeUtil]
-class Resize extends StatelessWidget {
+/// Helper Widget to initialize [ScaledSizeUtil]
+class ScaledSize extends StatelessWidget {
   final Widget Function() builder;
 
-  /// base size for calculating rem [ResizeUtil.rem]
+  /// base size for calculating rem [ScaledSizeUtil.rem]
   final double baseForREM;
 
   /// [Size] of the device
   final Size size;
 
   /// Boolean to indicate text scaling
-  final bool allowtextScaling;
+  final bool allowTextScaling;
 
-  Resize({
+  ScaledSize({
     required this.builder,
-    this.size = ResizeUtil.defaultSize,
+    this.size = ScaledSizeUtil.defaultSize,
     this.baseForREM = 16.0,
-    this.allowtextScaling = true,
+    this.allowTextScaling = true,
     Key? key,
   }) : super(key: key);
 
@@ -28,12 +28,12 @@ class Resize extends StatelessWidget {
       builder: (_, constraints) => OrientationBuilder(
         builder: (_, orientation) {
           if (constraints.maxWidth != 0) {
-            ResizeUtil().init(
+            ScaledSizeUtil().init(
               constraints,
               orientation,
               base: baseForREM,
               size: size,
-              allowtextScaling: allowtextScaling,
+              allowTextScaling: allowTextScaling,
             );
             return builder();
           }
